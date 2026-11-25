@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Center | STUDYIQ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/career_center.css') }}">
+</head>
+
+<body>
+
+<div class="career-container">
+
+    <header class="career-header">
+        <a href="{{ url_for('dashboard') }}" class="back-link">← Dashboard</a>
+        <span class="brand">STUDYIQ</span>
+    </header>
+
+    <main class="career-main">
+
+        <section class="hero">
+            <p class="eyebrow">YOUR FUTURE STARTS HERE</p>
+            <h1>Build your <span>Career.</span></h1>
+            <p>Explore career paths, understand opportunities and plan your next step.</p>
+        </section>
+
+        <section class="career-section">
+            <h2>Explore Career Paths</h2>
+            <p class="section-description">Discover different fields you can explore.</p>
+
+            <div class="career-grid">
+
+                <div class="career-card">
+                    <div class="card-icon">💻</div>
+                    <h3>Software Developer</h3>
+                    <p>Build applications, websites and software solutions.</p>
+                    <span>Programming</span>
+                </div>
+
+                <div class="career-card">
+                    <div class="card-icon">📊</div>
+                    <h3>Data Analyst</h3>
+                    <p>Understand data and convert it into useful insights.</p>
+                    <span>Data & Analytics</span>
+                </div>
+
+                <div class="career-card">
+                    <div class="card-icon">🤖</div>
+                    <h3>AI / ML Engineer</h3>
+                    <p>Explore artificial intelligence and machine learning.</p>
+                    <span>Artificial Intelligence</span>
+                </div>
+
+                <div class="career-card">
+                    <div class="card-icon">🔐</div>
+                    <h3>Cybersecurity</h3>
+                    <p>Learn about digital security and protecting systems.</p>
+                    <span>Security</span>
+                </div>
+
+                <div class="career-card">
+                    <div class="card-icon">🌐</div>
+                    <h3>Web Developer</h3>
+                    <p>Create responsive and interactive websites.</p>
+                    <span>Web Development</span>
+                </div>
+
+                <div class="career-card">
+                    <div class="card-icon">☁️</div>
+                    <h3>Cloud Engineer</h3>
+                    <p>Explore cloud platforms and infrastructure.</p>
+                    <span>Cloud Computing</span>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="career-tip">
+            <h2>Start building your future</h2>
+            <p>Choose a career path, develop relevant skills and keep learning consistently.</p>
+            <a href="{{ url_for('my_skills') }}">Explore My Skills →</a>
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

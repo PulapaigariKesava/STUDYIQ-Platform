@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Opportunities | STUDYIQ</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/opportunities.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <main class="opportunities-container">
+
+        <header class="page-header">
+            <a href="{{ url_for('dashboard') }}" class="back-link">← Dashboard</a>
+
+            <p class="eyebrow">EXPLORE YOUR FUTURE</p>
+
+            <h1>Opportunities</h1>
+
+            <p>Discover opportunities that help you learn, grow and achieve more.</p>
+        </header>
+
+
+        <section class="opportunity-intro">
+            <h2>Your next opportunity starts here.</h2>
+            <p>Explore different ways to develop your skills and gain experience.</p>
+        </section>
+
+
+        <section class="opportunity-grid">
+
+            <div class="opportunity-card">
+                <div class="opportunity-icon">💼</div>
+                <span class="category-label">CAREER</span>
+                <h2>Internships</h2>
+                <p>Explore internship opportunities to gain practical industry experience.</p>
+                <a href="https://internshala.com/" target="_blank" rel="noopener noreferrer">
+                    Explore internships →
+                </a>
+            </div>
+
+
+            <div class="opportunity-card">
+                <div class="opportunity-icon">🚀</div>
+                <span class="category-label">INNOVATION</span>
+                <h2>Hackathons</h2>
+                <p>Participate in challenges, build projects and collaborate with others.</p>
+                <a href="https://devpost.com/hackathons" target="_blank" rel="noopener noreferrer">
+                    Explore hackathons →
+                </a>
+            </div>
+
+
+            <div class="opportunity-card">
+                <div class="opportunity-icon">🎓</div>
+                <span class="category-label">EDUCATION</span>
+                <h2>Scholarships</h2>
+                <p>Find scholarship information that can support your education.</p>
+                <a href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer">
+                    Explore scholarships →
+                </a>
+            </div>
+
+
+            <div class="opportunity-card">
+                <div class="opportunity-icon">🏆</div>
+                <span class="category-label">ACHIEVEMENT</span>
+                <h2>Competitions</h2>
+                <p>Discover competitions where you can test your knowledge and creativity.</p>
+                <a href="https://unstop.com/" target="_blank" rel="noopener noreferrer">
+                    Explore competitions →
+                </a>
+            </div>
+
+        </section>
+
+
+        <footer>
+            STUDYIQ © 2026 · Built for ambitious students.
+        </footer>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Planner | STUDYIQ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/planner.css') }}">
+</head>
+<body>
+
+<div class="planner-container">
+
+    <header class="planner-header">
+        <a href="{{ url_for('dashboard') }}" class="logo">STUDY<span>IQ</span></a>
+        <a href="{{ url_for('dashboard') }}" class="back-link">← Dashboard</a>
+    </header>
+
+    <main class="planner-main">
+        <div class="page-heading">
+            <p class="eyebrow">STUDENT WORKSPACE</p>
+            <h1>Study Planner</h1>
+            <p>Plan your study sessions and stay organized.</p>
+        </div>
+
+        <section class="planner-card">
+            <h2>Create a Study Plan</h2>
+
+            <form id="plannerForm">
+                <div class="form-group">
+                    <label for="task">Study Task</label>
+                    <input type="text" id="task" placeholder="Example: Complete DBMS Unit 2" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="Example: DBMS" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studyDate">Study Date</label>
+                        <input type="date" id="studyDate" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="duration">Duration</label>
+                    <select id="duration" required>
+                        <option value="">Select duration</option>
+                        <option value="30 minutes">30 minutes</option>
+                        <option value="1 hour">1 hour</option>
+                        <option value="2 hours">2 hours</option>
+                        <option value="3 hours">3 hours</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="add-button">Add Study Plan +</button>
+            </form>
+        </section>
+
+        <section class="plans-section">
+            <div class="section-heading">
+                <h2>Your Study Plans</h2>
+                <span id="planCount">0 plans</span>
+            </div>
+
+            <div id="planList" class="plan-list">
+                <p class="empty-message">No study plans yet. Create your first plan!</p>
+            </div>
+        </section>
+    </main>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/planner.js') }}"></script>
+</body>
+</html>

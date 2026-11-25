@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDYIQ | Your AI-Powered Student Companion</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="#" class="logo">STUDY<span>IQ.</span></a>
+
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="#features">Explore</a>
+        </div>
+
+       <div class="nav-actions">
+    <a href="{{ url_for('login') }}" class="login-link">
+        Login
+    </a>
+
+    <a href="{{ url_for('register') }}" class="nav-button">
+        Get Started →
+    </a>
+</div>
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="eyebrow">A BETTER WAY TO BE A STUDENT</p>
+
+            <h1>
+                Your student life.<br>
+                <span>Better organized.</span>
+            </h1>
+
+            <p class="hero-description">
+                From everyday learning to long-term career goals,
+                STUDYIQ brings your academic journey, skills,
+                projects and opportunities together in one place.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#features" class="primary-button">
+                    Discover STUDYIQ →
+                </a>
+                <a href="#about" class="secondary-button">
+                    Learn More
+                </a>
+            </div>
+
+            <div class="hero-note">
+                <span class="note-dot"></span>
+                Built for Student Growth
+            </div>
+
+        </div>
+
+
+        <!-- CSS STUDY WORKSPACE -->
+        <div class="study-workspace">
+
+            <div class="background-circle"></div>
+
+            <!-- PROGRESS CARD -->
+            <div class="floating-card progress-card">
+                <p>Study Progress</p>
+                <div class="progress-info">
+                    <h2>78%</h2>
+                    <span>Weekly goal</span>
+                </div>
+                <div class="progress-bar">
+                    <div></div>
+                </div>
+            </div>
+
+            <!-- TASK CARD -->
+            <div class="floating-card task-card">
+                <h3>Today's Tasks</h3>
+                <p><span>✓</span> Complete Notes</p>
+                <p><span>✓</span> Finish Project</p>
+                <p><span>✓</span> Revise Topics</p>
+            </div>
+
+            <!-- STUDY DESK -->
+            <div class="desk-scene">
+
+                <div class="books">
+                    <div class="book book-one"></div>
+                    <div class="book book-two"></div>
+                    <div class="book book-three"></div>
+                </div>
+
+                <div class="laptop">
+                    <div class="laptop-screen">
+                        <h2>STUDY<span>IQ.</span></h2>
+                        <p>Your Learning Space</p>
+                        <div class="screen-line"></div>
+                    </div>
+                    <div class="laptop-base"></div>
+                </div>
+
+                <div class="plant">
+                    <div class="leaf leaf-one"></div>
+                    <div class="leaf leaf-two"></div>
+                    <div class="leaf leaf-three"></div>
+                    <div class="plant-pot"></div>
+                </div>
+
+                <div class="desk"></div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES SECTION -->
+    <section class="features" id="features">
+
+        <div class="features-heading">
+            <p class="eyebrow">EVERYTHING IN ONE PLACE</p>
+            <h2>Designed around<br>your student journey.</h2>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">✦</div>
+            <h3>AI Assistant</h3>
+            <p>Understand complex topics and get learning support.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">▦</div>
+            <h3>Study Planner</h3>
+            <p>Organize subjects, deadlines and daily goals.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">↗</div>
+            <h3>Skill Growth</h3>
+            <p>Discover your skills and build a roadmap.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">▣</div>
+            <h3>Career Center</h3>
+            <p>Explore careers and future opportunities.</p>
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <p class="eyebrow">ABOUT STUDYIQ</p>
+        <h2>One platform.<br><span>More possibilities.</span></h2>
+        <p>
+            STUDYIQ is designed to help students learn smarter,
+            stay organized, develop practical skills and prepare
+            for their future careers.
+        </p>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <a href="#" class="logo">STUDY<span>IQ.</span></a>
+        <p>Your AI-Powered Student Companion</p>
+        <p class="copyright">© 2026 STUDYIQ. Built for Student Growth.</p>
+    </footer>
+
+</body>
+</html>

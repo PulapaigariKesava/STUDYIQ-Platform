@@ -1,0 +1,185 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f7f7f5;
+    color: #202020;
+}
+
+.planner-container {
+    min-height: 100vh;
+}
+
+.planner-header {
+    height: 75px;
+    background: #ffffff;
+    border-bottom: 1px solid #e8e8e5;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: #202020;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #e44747;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+}
+
+.planner-main {
+    max-width: 950px;
+    margin: auto;
+    padding: 55px 25px;
+}
+
+.page-heading {
+    margin-bottom: 35px;
+}
+
+.eyebrow {
+    color: #e44747;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+}
+
+.page-heading h1 {
+    font-size: 36px;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+}
+
+.page-heading p:last-child {
+    color: #777;
+    font-size: 14px;
+}
+
+.planner-card {
+    background: #ffffff;
+    border: 1px solid #e8e8e5;
+    border-radius: 14px;
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.planner-card h2,
+.section-heading h2 {
+    font-size: 19px;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #e5e5e2;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    background: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #e44747;
+}
+
+.form-row {
+    display: flex;
+    gap: 18px;
+}
+
+.add-button {
+    background: #e44747;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background: #c93636;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-heading span {
+    color: #888;
+    font-size: 13px;
+}
+
+.plan-list {
+    display: grid;
+    gap: 12px;
+}
+
+.empty-message {
+    background: #fff;
+    border: 1px dashed #d8d8d4;
+    padding: 35px;
+    text-align: center;
+    color: #888;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .planner-header {
+        padding: 0 20px;
+    }
+
+    .planner-main {
+        padding: 35px 16px;
+    }
+
+    .page-heading h1 {
+        font-size: 29px;
+    }
+
+    .planner-card {
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}

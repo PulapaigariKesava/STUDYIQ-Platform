@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Subjects | STUDYIQ</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/subjects.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="subjects-container">
+
+        <header class="subjects-header">
+            <a href="{{ url_for('dashboard') }}" class="logo">STUDY<span>IQ.</span></a>
+            <a href="{{ url_for('dashboard') }}" class="back-link">← Dashboard</a>
+        </header>
+
+        <main class="subjects-main">
+
+            <section class="page-heading">
+                <p class="eyebrow">YOUR LEARNING SPACE</p>
+                <h1>My Subjects</h1>
+                <p>Organize your subjects and keep your learning journey on track.</p>
+            </section>
+
+            <section class="subject-form-card">
+                <h2>Add a new subject</h2>
+                <p>Build your personal subject collection.</p>
+
+                <form action="{{ url_for('add_subject') }}" method="POST">
+
+                    <div class="form-group">
+                        <label for="name">Subject name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Example: Computer Networks"
+                            maxlength="100"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description (optional)</label>
+                        <textarea
+                            id="description"
+                            name="description"
+                            placeholder="Add a short description..."
+                            rows="3"
+                            maxlength="300"
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="add-button">+ Add Subject</button>
+
+                </form>
+            </section>
+
+            <section class="subject-list-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Your Subjects</h2>
+                        <p>All your added subjects in one place.</p>
+                    </div>
+
+                    <span class="subject-count">{{ subjects|length }} Subjects</span>
+                </div>
+
+                <div class="subject-grid">
+
+                    {% if subjects %}
+
+                        {% for subject in subjects %}
+
+                            <article class="subject-card">
+
+                                <div class="subject-icon">📘</div>
+
+                                <h3>{{ subject.name }}</h3>
+
+                                <p>
+                                    {{ subject.description if subject.description else 'No description added yet.' }}
+                                </p>
+
+                                <form
+                                    action="{{ url_for('delete_subject', subject_id=subject.id) }}"
+                                    method="POST"
+                                    onsubmit="return confirm('Delete this subject?')"
+                                >
+                                    <button type="submit" class="delete-button">Delete Subject</button>
+                                </form>
+
+                            </article>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <div class="empty-state">
+                            <div>📚</div>
+                            <h3>No subjects added yet</h3>
+                            <p>Add your first subject to get started.</p>
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer>
+            STUDYIQ © 2026 · Built for ambitious students.
+        </footer>
+
+    </div>
+
+</body>
+</html>

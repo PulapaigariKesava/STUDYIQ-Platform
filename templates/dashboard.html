@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | STUDYIQ</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <a href="/" class="logo">STUDY<span>IQ.</span></a>
+
+        <p class="menu-title">WORKSPACE</p>
+
+        <a href="{{ url_for('dashboard') }}" class="active">▦ Dashboard</a>
+        <a href="{{ url_for('planner') }}">◷ Study Planner</a>
+        <a href="{{ url_for('subjects') }}">▤ My Subjects</a>
+        <a href="{{ url_for('timetable') }}">▦ My Timetable</a>
+
+        <p class="menu-title">GROWTH</p>
+
+        <a href="{{ url_for('my_skills') }}">✧ My Skills</a>
+        <a href="{{ url_for('opportunities') }}">◎ Opportunities</a>
+        <a href="{{ url_for('career_center') }}">⌘ Career Center</a>
+
+        <div class="sidebar-bottom">
+            <a href="#">⚙ Settings</a>
+            <a href="{{ url_for('logout') }}">↪ Logout</a>
+        </div>
+
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">STUDENT WORKSPACE</p>
+                <h1>Dashboard</h1>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">{{ current_user.name[0]|upper }}</div>
+                <span>{{ current_user.name }}</span>
+            </div>
+
+        </header>
+
+
+        <!-- WELCOME SECTION -->
+        <section class="welcome">
+
+            <div>
+                <p class="eyebrow">YOUR LEARNING JOURNEY</p>
+                <h2>Welcome back, {{ current_user.name }}!</h2>
+                <p>Your goals are waiting. Let's make today productive.</p>
+            </div>
+
+            <div class="study-illustration">
+
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+
+                <div class="floating-book book-one">📘</div>
+                <div class="floating-book book-two">📚</div>
+                <div class="floating-star">✦</div>
+
+                <div class="desk">
+                    <div class="laptop">
+                        <div class="laptop-screen">
+                            <span>STUDYIQ</span>
+                            <div class="screen-line"></div>
+                            <div class="screen-line short"></div>
+                            <div class="screen-dot"></div>
+                        </div>
+                        <div class="laptop-base"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATISTICS -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <span>Study Progress</span>
+                    <span class="stat-icon">📚</span>
+                </div>
+                <h2 class="counter" data-target="{{ progress }}">0</h2>
+                <p>Overall learning progress</p>
+                <div class="progress-track">
+                    <div class="progress-fill" style="--progress: {{ progress }}%"></div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <span>Completed Tasks</span>
+                    <span class="stat-icon">🎯</span>
+                </div>
+                <h2>{{ completed_tasks }}</h2>
+                <p>Tasks completed</p>
+                <div class="progress-track">
+                    <div class="progress-fill" style="--progress: {{ progress }}%"></div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <span>Total Tasks</span>
+                    <span class="stat-icon">📝</span>
+                </div>
+                <h2>{{ total_tasks }}</h2>
+                <p>Your learning activities</p>
+                <div class="progress-track">
+                    <div class="progress-fill" style="--progress: {{ progress }}%"></div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- MY TASKS -->
+        <section class="tasks-section">
+
+            <div class="section-heading">
+                <h2>My Tasks</h2>
+                <p>Track your daily learning activities.</p>
+            </div>
+
+            <form action="{{ url_for('add_task') }}" method="POST" class="add-task-form">
+
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="Enter your study task..."
+                    required
+                >
+
+                <button type="submit">+ Add Task</button>
+
+            </form>
+
+            <div class="tasks-list">
+
+                {% if tasks %}
+
+                    {% for task in tasks %}
+
+                        <div class="task-item">
+
+                            <span>{{ task.title }}</span>
+
+                            <form action="{{ url_for('complete_task', task_id=task.id) }}" method="POST">
+
+                                {% if not task.completed %}
+                                    <button type="submit">✓ Complete</button>
+                                {% else %}
+                                    <span>Completed ✓</span>
+                                {% endif %}
+
+                            </form>
+
+                            <form action="{{ url_for('delete_task', task_id=task.id) }}" method="POST">
+
+                                <button
+                                    type="submit"
+                                    onclick="return confirm('Are you sure you want to delete this task?')"
+                                >
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <p>No tasks yet. Your learning journey starts here!</p>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+        <!-- WORKSPACE HEADING -->
+        <section class="section-heading">
+            <h2>Your workspace</h2>
+            <p>Everything you need to move forward.</p>
+        </section>
+
+
+        <!-- FEATURE CARDS -->
+        <section class="feature-grid">
+
+            <div class="feature-card">
+                <div class="card-icon">◷</div>
+                <h3>Study Planner</h3>
+                <p>Organize subjects, tasks and your study schedule.</p>
+                <a href="{{ url_for('planner') }}">Plan now →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="card-icon">▤</div>
+                <h3>My Subjects</h3>
+                <p>Keep your learning materials and subjects together.</p>
+                <a href="{{ url_for('subjects') }}">View subjects →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="card-icon">▦</div>
+                <h3>My Timetable</h3>
+                <p>Create and manage your weekly class timetable.</p>
+                <a href="{{ url_for('timetable') }}">View timetable →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="card-icon">✧</div>
+                <h3>Skill Growth</h3>
+                <p>Discover skills and build your learning roadmap.</p>
+                <a href="{{ url_for('my_skills') }}">Build skills →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="card-icon">◎</div>
+                <h3>Opportunities</h3>
+                <p>Discover events, scholarships and hackathons.</p>
+                <a href="{{ url_for('opportunities') }}">Discover →</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="card-icon">⌘</div>
+                <h3>Career Center</h3>
+                <p>Explore career paths and prepare for your future.</p>
+                <a href="{{ url_for('career_center') }}">Explore careers →</a>
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+            STUDYIQ © 2026 · Built for ambitious students.
+        </footer>
+
+    </main>
+
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+</html>

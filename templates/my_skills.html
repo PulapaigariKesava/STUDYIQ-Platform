@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Skills | STUDYIQ</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/my_skills.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <main class="skills-container">
+
+        <header class="page-header">
+            <a href="{{ url_for('dashboard') }}" class="back-link">← Dashboard</a>
+            <p class="eyebrow">PERSONAL DEVELOPMENT</p>
+            <h1>My Skills</h1>
+            <p>Build your skills. Track your growth. Shape your future.</p>
+        </header>
+
+        <section class="add-skill-section">
+
+            <div class="section-heading">
+                <h2>Add a new skill</h2>
+                <p>Keep track of the skills you are learning.</p>
+            </div>
+
+            <form action="{{ url_for('add_skill') }}" method="POST" class="skill-form">
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Skill name (e.g. Python)"
+                    required
+                >
+
+                <select name="category" required>
+                    <option value="">Select category</option>
+                    <option value="Programming">Programming</option>
+                    <option value="Technical">Technical</option>
+                    <option value="Soft Skills">Soft Skills</option>
+                    <option value="Design">Design</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <select name="level" required>
+                    <option value="">Select level</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+
+                <button type="submit">+ Add Skill</button>
+
+            </form>
+
+        </section>
+
+
+        <section class="my-skills-section">
+
+            <div class="section-heading">
+                <h2>Your skills</h2>
+                <p>Skills you are currently developing.</p>
+            </div>
+
+            <div class="skills-grid">
+
+                {% if skills %}
+
+                    {% for skill in skills %}
+
+                        <div class="skill-card">
+
+                            <span class="skill-category">{{ skill.category }}</span>
+
+                            <h3>{{ skill.name }}</h3>
+
+                            <p>Level: {{ skill.level }}</p>
+
+                            <form action="{{ url_for('delete_skill', skill_id=skill.id) }}" method="POST">
+                                <button
+                                    type="submit"
+                                    onclick="return confirm('Delete this skill?')"
+                                >
+                                    Delete
+                                </button>
+                            </form>
+
+                        </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <p class="empty-message">
+                        No skills added yet. Start building your skills today!
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

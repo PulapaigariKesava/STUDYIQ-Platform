@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Timetable | STUDYIQ</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/timetable.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="timetable-container">
+
+        <header class="timetable-header">
+            <a href="{{ url_for('dashboard') }}" class="logo">STUDY<span>IQ.</span></a>
+            <a href="{{ url_for('dashboard') }}" class="back-link">← Dashboard</a>
+        </header>
+
+        <main class="timetable-main">
+
+            <section class="page-heading">
+                <p class="eyebrow">PLAN YOUR WEEK</p>
+                <h1>My Timetable</h1>
+                <p>Organize your weekly classes and create a balanced study routine.</p>
+            </section>
+
+            <!-- ADD PERIOD FORM -->
+            <section class="timetable-form-card">
+
+                <h2>Add a new period</h2>
+                <p>Enter your subject and class timings.</p>
+
+                <form action="{{ url_for('add_period') }}" method="POST">
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+
+                            {% for subject in subjects %}
+                                <option value="{{ subject.name }}">{{ subject.name }}</option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="day">Day</label>
+
+                        <select id="day" name="day" required>
+                            <option value="">Select day</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="start_time">Start time</label>
+                            <input type="time" id="start_time" name="start_time" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="end_time">End time</label>
+                            <input type="time" id="end_time" name="end_time" required>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="add-button">+ Add Period</button>
+
+                </form>
+
+            </section>
+
+
+            <!-- WEEKLY TIMETABLE -->
+            <section class="schedule-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Weekly Schedule</h2>
+                        <p>Your complete weekly learning routine.</p>
+                    </div>
+
+                    <span class="period-count">{{ periods|length }} Periods</span>
+                </div>
+
+                <div class="schedule-grid">
+
+                    {% set days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %}
+
+                    {% for day in days %}
+
+                        <div class="day-card">
+
+                            <div class="day-heading">
+                                <h3>{{ day }}</h3>
+                            </div>
+
+                            <div class="period-list">
+
+                                {% set day_periods = periods|selectattr('day', 'equalto', day)|list %}
+
+                                {% if day_periods %}
+
+                                    {% for period in day_periods %}
+
+                                        <div class="period-card">
+
+                                            <h4>{{ period.subject }}</h4>
+
+                                            <p>
+                                                {{ period.start_time }} – {{ period.end_time }}
+                                            </p>
+
+                                            <form
+                                                action="{{ url_for('delete_period', period_id=period.id) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Delete this period?')"
+                                            >
+                                                <button type="submit" class="delete-button">
+                                                    Delete
+                                                </button>
+                                            </form>
+
+                                        </div>
+
+                                    {% endfor %}
+
+                                {% else %}
+
+                                    <p class="empty-day">No periods scheduled</p>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer>
+            STUDYIQ © 2026 · Built for ambitious students.
+        </footer>
+
+    </div>
+
+</body>
+</html>
